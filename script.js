@@ -97,6 +97,17 @@ addbtn.addEventListener('click',()=>{
     newRead.setAttribute('placeholder','Have you read this book?');
     newForm.appendChild(newRead);
 
+
+    const subbmitBtn=document.createElement('button');
+    subbmitBtn.setAttribute('type','submit');
+    subbmitBtn.setAttribute('name', 'submit');
+    subbmitBtn.textContent = 'Submit';
+
+    subbmitBtn.style.width = '150px'; 
+    subbmitBtn.style.height = '50px';
+    
+    newForm.appendChild(subbmitBtn);
+
     document.body.appendChild(newForm);
 
 })
