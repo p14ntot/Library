@@ -38,7 +38,9 @@ addBookToLibrary(hobbit,myLibrary);
 
 
 function DisplayLibrary(library){
+    
     const libraryDiv=document.getElementById('display');
+    
     for(let i=0; i<library.length; i++){
         const div=document.createElement('div')
         div.classList.add('book');
@@ -51,6 +53,11 @@ function DisplayLibrary(library){
         console.log(library[i]);
         libraryDiv.appendChild(div);
     }
+
+    hide=document.getElementById('display-btn'); // hide the display btn
+    hide.style.display='none';
+
+    
 }
 
 
@@ -60,14 +67,11 @@ function DisplayLibrary(library){
 const addbtn=document.getElementById('newbook');
 addbtn.addEventListener('click',()=>{
     
-    //removes all the btns from body
+    //hide btns from body
     const theAddButton = document.querySelector('#btn-area');
-    document.body.removeChild(theAddButton);
-    // removes all divs from body
-    const allDivs = document.querySelectorAll('body > div');
-    for (let i = 0; i < allDivs.length; i++) {
-    document.body.removeChild(allDivs[i]);
-    }
+
+    theAddButton.style.display='none';
+
 
     //const formDiv = document.getElementById('form-div');
     
@@ -102,6 +106,9 @@ addbtn.addEventListener('click',()=>{
     newRead.style.height = '30px';
     newForm.appendChild(newRead);
 
+    const newDiv=document.createElement('div');
+    newDiv.style.display='flex';
+
 
     
     //create submit btn
@@ -109,6 +116,14 @@ addbtn.addEventListener('click',()=>{
     subbmitBtn.setAttribute('type','submit');
     subbmitBtn.setAttribute('name', 'submit');
     subbmitBtn.textContent = 'Submit';
+    newDiv.appendChild(subbmitBtn);
+    
+    subbmitBtn.addEventListener("click", function(event) {
+        // Ακυρώνει την προεπιλεγμένη συμπεριφορά της υποβολής της φόρμας
+        event.preventDefault();
+
+        this.form.style.display = 'none';
+      });
 
     
     // style the submit button
@@ -119,8 +134,25 @@ addbtn.addEventListener('click',()=>{
     subbmitBtn.style.fontWeight = 'bolder';
     subbmitBtn.style.fontSize = '1.3em';
     subbmitBtn.style.borderRadius='11px';
+
+    // create back btn
+    const backBtn=document.createElement('button');
+    backBtn.setAttribute('type','button');
+    backBtn.textContent='Back';
+
+    //style back btn
+    backBtn.style.width = '120px'; 
+    backBtn.style.height = '50px';
+    backBtn.style.backgroundColor = '#3E51FC';
+    backBtn.style.color = 'white';
+    backBtn.style.fontWeight = 'bolder';
+    backBtn.style.fontSize = '1.3em';
+    backBtn.style.borderRadius='11px';
+    newDiv.appendChild(backBtn);
+
+    newForm.appendChild(newDiv);
     
-    newForm.appendChild(subbmitBtn);
+
 
     newForm.style.border='solid #AEFFFB 2px';
     newForm.style.display='flex';
